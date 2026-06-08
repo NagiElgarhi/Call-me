@@ -171,32 +171,32 @@ export default function InitiativeModal({ isOpen, onClose, lang, onStartAction }
   const activePoem = lang === 'ar' ? poemStanzasAr : poemStanzasEn;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-100/90 dark:bg-slate-950/90 backdrop-blur-md transition-colors duration-300">
       {/* Glow Effect */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] max-w-4xl h-[80%] bg-indigo-600/10 blur-[130px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] max-w-4xl h-[80%] bg-lime-600/10 dark:bg-indigo-600/10 blur-[130px] rounded-full pointer-events-none -z-10 transition-colors duration-300" />
 
       <div 
-        className="w-full max-w-4xl max-h-[90vh] bg-slate-900 border border-white/10 rounded-[2.5rem] flex flex-col overflow-hidden shadow-2xl transition-all duration-300"
+        className="w-full max-w-4xl max-h-[90vh] bg-[#fdfdf9] dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-[2.5rem] flex flex-col overflow-hidden shadow-2xl transition-all duration-300"
         dir={lang === 'ar' ? 'rtl' : 'ltr'}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-5 border-b border-white/5 bg-slate-950/50">
+        <div className="flex items-center justify-between px-6 py-5 border-b border-slate-200 dark:border-white/5 bg-slate-50/50 dark:bg-slate-950/50 transition-colors duration-300">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-indigo-500/10 flex items-center justify-center text-indigo-400">
-              <Heart className="w-5 h-5 fill-indigo-400/20" />
+            <div className="w-10 h-10 rounded-full bg-lime-500/10 dark:bg-indigo-500/10 flex items-center justify-center text-lime-600 dark:text-indigo-400 transition-colors duration-300">
+              <Heart className="w-5 h-5 fill-lime-600/20 dark:fill-indigo-400/20 transition-colors duration-300" />
             </div>
             <div>
-              <h1 className={`text-lg md:text-xl font-bold text-white ${lang === 'ar' ? 'font-arabic' : ''}`}>
+              <h1 className={`text-lg md:text-xl font-bold text-slate-800 dark:text-white transition-colors duration-300 ${lang === 'ar' ? 'font-arabic' : ''}`}>
                 {lang === 'ar' ? 'مبادرة "كلمني عن نفسك في دقيقتين"' : '"Tell Me About Yourself in Two Minutes" Initiative'}
               </h1>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-500 dark:text-slate-400 transition-colors duration-300">
                 {lang === 'ar' ? 'منبر للتواصل الإنساني والفضفضة الصادقة' : 'A platform for human connection and heartfelt sharing'}
               </p>
             </div>
           </div>
           <button 
             onClick={onClose}
-            className="p-2 text-slate-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-full transition-all"
+            className="p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 rounded-full transition-all"
             title={lang === 'ar' ? 'إغلاق' : 'Close'}
           >
             <X className="w-5 h-5" />
@@ -204,13 +204,13 @@ export default function InitiativeModal({ isOpen, onClose, lang, onStartAction }
         </div>
 
         {/* Tabs navigation */}
-        <div className="flex border-b border-white/5 bg-slate-900/50 px-6 py-2 gap-2 text-xs md:text-sm">
+        <div className="flex border-b border-slate-200 dark:border-white/5 bg-[#fdfdf9]/80 dark:bg-slate-900/50 px-6 py-2 gap-2 text-xs md:text-sm transition-colors duration-300">
           <button
             onClick={() => setActiveTab('poem')}
             className={`px-4 py-2.5 rounded-xl font-bold transition-all flex items-center gap-2 ${
               activeTab === 'poem'
-                ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/20'
-                : 'text-slate-400 hover:text-white hover:bg-white/5'
+                ? 'bg-lime-600 dark:bg-indigo-600 text-white shadow-lg shadow-lime-600/20 dark:shadow-indigo-600/20'
+                : 'text-slate-500 hover:text-slate-900 hover:bg-black/5 dark:text-slate-400 dark:hover:text-white dark:hover:bg-white/5'
             }`}
           >
             <Sparkles className="w-4 h-4" />
@@ -220,8 +220,8 @@ export default function InitiativeModal({ isOpen, onClose, lang, onStartAction }
             onClick={() => setActiveTab('analysis')}
             className={`px-4 py-2.5 rounded-xl font-bold transition-all flex items-center gap-2 ${
               activeTab === 'analysis'
-                ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/20'
-                : 'text-slate-400 hover:text-white hover:bg-white/5'
+                ? 'bg-lime-600 dark:bg-indigo-600 text-white shadow-lg shadow-lime-600/20 dark:shadow-indigo-600/20'
+                : 'text-slate-500 hover:text-slate-900 hover:bg-black/5 dark:text-slate-400 dark:hover:text-white dark:hover:bg-white/5'
             }`}
           >
             <Compass className="w-4 h-4" />
@@ -231,8 +231,8 @@ export default function InitiativeModal({ isOpen, onClose, lang, onStartAction }
             onClick={() => setActiveTab('guide')}
             className={`px-4 py-2.5 rounded-xl font-bold transition-all flex items-center gap-2 ${
               activeTab === 'guide'
-                ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/20'
-                : 'text-slate-400 hover:text-white hover:bg-white/5'
+                ? 'bg-lime-600 dark:bg-indigo-600 text-white shadow-lg shadow-lime-600/20 dark:shadow-indigo-600/20'
+                : 'text-slate-500 hover:text-slate-900 hover:bg-black/5 dark:text-slate-400 dark:hover:text-white dark:hover:bg-white/5'
             }`}
           >
             <HelpCircle className="w-4 h-4" />
@@ -263,40 +263,40 @@ export default function InitiativeModal({ isOpen, onClose, lang, onStartAction }
                     <div className="w-24 h-1 bg-gradient-to-r from-amber-500 to-yellow-400 rounded-full"></div>
                   </div>
 
-                  <div className="space-y-8 text-slate-200 leading-relaxed">
-                    <p className="text-sm md:text-base text-slate-300 border-r-4 border-amber-500/50 pr-4 py-1 italic bg-white/[0.02] rounded-l-xl">
-                      في عالم متسارع يركض فيه الجميع دون توقف، نادراً ما نجد من ينصت إلينا بقلب صادق، أو يمنحنا اللحظة لنعبر عما يسكن وجداننا. من هنا، تنطلق مبادرة <strong className="text-amber-300">"كلمني عن نفسك في دقيقتين"</strong> كدعوة دافئة ومساحة إنسانية خالصة، تهدف إلى إعادة الاعتبار لقيمة الكلمة الصادقة وأثر الاستماع في حياة البشر.
+                  <div className="space-y-8 text-slate-700 dark:text-slate-200 leading-relaxed transition-colors duration-300">
+                    <p className="text-sm md:text-base text-slate-600 dark:text-slate-300 border-r-4 border-amber-500/50 pr-4 py-1 italic bg-black/[0.02] dark:bg-white/[0.02] rounded-l-xl transition-colors duration-300">
+                      في عالم متسارع يركض فيه الجميع دون توقف، نادراً ما نجد من ينصت إلينا بقلب صادق، أو يمنحنا اللحظة لنعبر عما يسكن وجداننا. من هنا، تنطلق مبادرة <strong className="text-amber-600 dark:text-amber-300">"كلمني عن نفسك في دقيقتين"</strong> كدعوة دافئة ومساحة إنسانية خالصة، تهدف إلى إعادة الاعتبار لقيمة الكلمة الصادقة وأثر الاستماع في حياة البشر.
                     </p>
                     
-                    <p className="text-sm md:text-base text-slate-300 pr-1">
+                    <p className="text-sm md:text-base text-slate-600 dark:text-slate-300 pr-1 transition-colors duration-300">
                       المبادرة ليست مجرد لقاء عابر، بل هي جسر ممتد من القلوب وإلى القلوب، تسعى لاستكشاف الحكايات المنسية في تفاصيل الحياة اليومية، والإنصات إلى نبض الشارع وأحلام البسطاء والمبدعين على حد سواء.
                     </p>
 
                     {/* Pillars/Axes Section */}
                     <div className="space-y-4">
-                      <h3 className="text-lg md:text-xl font-bold text-amber-300 flex items-center gap-2 border-b border-white/5 pb-2">
-                        <Sparkles className="w-5 h-5 text-amber-400" />
+                      <h3 className="text-lg md:text-xl font-bold text-amber-600 dark:text-amber-300 flex items-center gap-2 border-b border-black/5 dark:border-white/5 pb-2 transition-colors duration-300">
+                        <Sparkles className="w-5 h-5 text-amber-500 dark:text-amber-400" />
                         محاور المبادرة: ماذا تحمل الدقيقتين؟
                       </h3>
-                      <p className="text-xs text-slate-400">
+                      <p className="text-xs text-slate-500 dark:text-slate-400 transition-colors duration-300">
                         تتجاوز المبادرة بأسئلتها العميقة والبسيطة قشور التعارف التقليدي، لتبحر في عمق التجربة الإنسانية من خلال عدة محاور تلخصها هذه الدقائق المعدودة:
                       </p>
                       <div className="grid md:grid-cols-2 gap-4">
-                        <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-amber-500/30 transition-all group">
-                          <span className="text-sm font-bold text-amber-300 group-hover:text-amber-200 transition-colors">✨ فضفضة الأحلام والآمال:</span>
-                          <p className="text-xs text-slate-400 mt-1">مساحة حرة ليتحدث كل شخص عن طموحاته، خططه في الدنيا، وكيف يسعى لتحقيق أحلامه، مع تمني القبول والتحقق من الله سبحانه وتعالى.</p>
+                        <div className="p-4 rounded-2xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5 hover:border-amber-500/30 transition-all group">
+                          <span className="text-sm font-bold text-amber-600 dark:text-amber-300 group-hover:text-amber-500 dark:group-hover:text-amber-200 transition-colors">✨ فضفضة الأحلام والآمال:</span>
+                          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 transition-colors duration-300">مساحة حرة ليتحدث كل شخص عن طموحاته، خططه في الدنيا، وكيف يسعى لتحقيق أحلامه، مع تمني القبول والتحقق من الله سبحانه وتعالى.</p>
                         </div>
-                        <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-amber-500/30 transition-all group">
-                          <span className="text-sm font-bold text-amber-300 group-hover:text-amber-200 transition-colors">🧠 مخزن الذكريات والمشاعر:</span>
-                          <p className="text-xs text-slate-400 mt-1">العودة إلى أجمل ذكريات الماضي التي ما زالت تسكن الوجدان، ومشاركة أطياف حلم الغد الذي يلوح في الأفق.</p>
+                        <div className="p-4 rounded-2xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5 hover:border-amber-500/30 transition-all group">
+                          <span className="text-sm font-bold text-amber-600 dark:text-amber-300 group-hover:text-amber-500 dark:group-hover:text-amber-200 transition-colors">🧠 مخزن الذكريات والمشاعر:</span>
+                          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 transition-colors duration-300">العودة إلى أجمل ذكريات الماضي التي ما زالت تسكن الوجدان، ومشاركة أطياف حلم الغد الذي يلوح في الأفق.</p>
                         </div>
-                        <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-amber-500/30 transition-all group">
-                          <span className="text-sm font-bold text-amber-300 group-hover:text-amber-200 transition-colors">🤝 الامتنان للروابط الإنسانية:</span>
-                          <p className="text-xs text-slate-400 mt-1">الحديث عن الأشخاص الغاليين الذين يملؤون الحياة حباً، والمواقف المحفورة في الذاكرة والتي رسمت ملامح الطريق الحالي.</p>
+                        <div className="p-4 rounded-2xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5 hover:border-amber-500/30 transition-all group">
+                          <span className="text-sm font-bold text-amber-600 dark:text-amber-300 group-hover:text-amber-500 dark:group-hover:text-amber-200 transition-colors">🤝 الامتنان للروابط الإنسانية:</span>
+                          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 transition-colors duration-300">الحديث عن الأشخاص الغاليين الذين يملؤون الحياة حباً، والمواقف المحفورة في الذاكرة والتي رسمت ملامح الطريق الحالي.</p>
                         </div>
-                        <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-amber-500/30 transition-all group">
-                          <span className="text-sm font-bold text-amber-300 group-hover:text-amber-200 transition-colors">🦾 التحدي ومواجهة الصعاب:</span>
-                          <p className="text-xs text-slate-400 mt-1">تشجيع الأفراد على مشاركة لحظات الأمل والتحديات التي يمرون بها، كنوع من الدعم المتبادل الذي يقوي العزائم.</p>
+                        <div className="p-4 rounded-2xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5 hover:border-amber-500/30 transition-all group">
+                          <span className="text-sm font-bold text-amber-600 dark:text-amber-300 group-hover:text-amber-500 dark:group-hover:text-amber-200 transition-colors">🦾 التحدي ومواجهة الصعاب:</span>
+                          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 transition-colors duration-300">تشجيع الأفراد على مشاركة لحظات الأمل والتحديات التي يمرون بها، كنوع من الدعم المتبادل الذي يقوي العزائم.</p>
                         </div>
                       </div>
                     </div>
@@ -332,13 +332,13 @@ export default function InitiativeModal({ isOpen, onClose, lang, onStartAction }
                     </div>
 
                     {/* Call to action invitation card */}
-                    <div className="p-6 rounded-2xl bg-gradient-to-tr from-amber-500/10 via-slate-900 to-slate-900 border border-amber-500/20 relative overflow-hidden text-right">
+                    <div className="p-6 rounded-2xl bg-gradient-to-tr from-amber-50 dark:from-amber-500/10 via-[#fdfdf9] dark:via-slate-900 to-[#fdfdf9] dark:to-slate-900 border border-amber-500/20 relative overflow-hidden text-right transition-colors duration-300">
                       <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
-                      <h3 className="text-lg font-bold text-amber-300 mb-2">📢 دعوة للمشاركة</h3>
-                      <p className="text-sm text-slate-300 leading-relaxed mb-4">
-                        إن مبادرة <strong>"كلمني عن نفسك في دقيقتين"</strong> تفتح ذراعيها لكل عابر سبيل، لكل صاحب حلم، ولكل من يملك قصة تستحق أن تُروى. شعارنا دائماً هو <strong className="text-amber-300">الصراحة والبشاشة</strong>، ويقيننا أن دقيقتين من وقتك قد تصنع فارقاً كبيراً في حياة الآخرين، فصوتك يملك دائماً القدرة على منح الأمل.
+                      <h3 className="text-lg font-bold text-amber-600 dark:text-amber-300 mb-2">📢 دعوة للمشاركة</h3>
+                      <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                        إن مبادرة <strong>"كلمني عن نفسك في دقيقتين"</strong> تفتح ذراعيها لكل عابر سبيل، لكل صاحب حلم، ولكل من يملك قصة تستحق أن تُروى. شعارنا دائماً هو <strong className="text-amber-600 dark:text-amber-300">الصراحة والبشاشة</strong>، ويقيننا أن دقيقتين من وقتك قد تصنع فارقاً كبيراً في حياة الآخرين، فصوتك يملك دائماً القدرة على منح الأمل.
                       </p>
-                      <p className="text-sm text-amber-300 font-extrabold text-center border-t border-white/5 pt-4">
+                      <p className="text-sm text-amber-600 dark:text-amber-300 font-extrabold text-center border-t border-black/5 dark:border-white/5 pt-4">
                         تكلم، فضفض، وشاركنا حكايتك.. نحن في انتظارك لنسمعك بألبنا!
                       </p>
                     </div>

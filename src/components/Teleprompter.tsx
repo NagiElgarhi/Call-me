@@ -182,15 +182,15 @@ export default function Teleprompter({ onClose }: TeleprompterProps) {
   };
 
   return (
-    <div className="w-full h-[500px] bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl flex flex-col overflow-hidden shadow-2xl relative">
+    <div className="w-full h-[500px] bg-slate-50/90 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200 dark:border-white/10 rounded-3xl flex flex-col overflow-hidden shadow-2xl relative transition-colors duration-300">
       {/* Header Controls */}
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between p-4 border-b border-white/10 bg-slate-950/50 gap-4">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between p-4 border-b border-slate-200 dark:border-white/10 bg-[#fdfdf9]/50 dark:bg-slate-950/50 gap-4 transition-colors duration-300">
         <div className="flex flex-wrap items-center gap-2">
           {isEditing ? (
             <>
               <button 
                 onClick={() => setIsEditing(false)}
-                className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-sm font-bold text-white transition-colors"
+                className="flex items-center gap-2 px-4 py-2 bg-lime-600 dark:bg-indigo-600 hover:bg-lime-500 dark:hover:bg-indigo-500 rounded-lg text-sm font-bold text-white transition-colors"
               >
                 <Check className="w-4 h-4" />
                 {lang === 'ar' ? 'حفظ النص' : 'Save Text'}
@@ -200,8 +200,8 @@ export default function Teleprompter({ onClose }: TeleprompterProps) {
                 onClick={toggleListening}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all relative overflow-hidden group ${
                   isListening 
-                    ? 'bg-amber-500/20 text-amber-300 border border-amber-500/50' 
-                    : 'bg-white/5 text-amber-400 hover:bg-white/10 border border-transparent'
+                    ? 'bg-amber-500/20 text-amber-600 dark:text-amber-300 border border-amber-500/50' 
+                    : 'bg-black/5 dark:bg-white/5 text-amber-500 dark:text-amber-400 hover:bg-black/10 dark:hover:bg-white/10 border border-transparent'
                 }`}
               >
                 {isListening && (
@@ -276,24 +276,24 @@ export default function Teleprompter({ onClose }: TeleprompterProps) {
             <>
               <button 
                 onClick={togglePlay}
-                className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-sm font-bold text-white transition-colors"
+                className="flex items-center gap-2 px-4 py-2 bg-lime-600 dark:bg-indigo-600 hover:bg-lime-500 dark:hover:bg-indigo-500 rounded-lg text-sm font-bold text-white transition-colors"
               >
                 {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
                 {isPlaying ? (lang === 'ar' ? 'إيقاف مؤقت' : 'Pause') : (lang === 'ar' ? 'تشغيل' : 'Play')}
               </button>
               
-              <div className="flex items-center gap-1 bg-white/5 rounded-lg border border-white/10 p-1">
+              <div className="flex items-center gap-1 bg-black/5 dark:bg-white/5 rounded-lg border border-black/10 dark:border-white/10 p-1">
                 <button 
                   onClick={() => setSpeed(Math.max(0.5, speed - 0.5))}
-                  className="p-1 rounded hover:bg-white/10 text-white/70 hover:text-white transition-colors"
+                  className="p-1 rounded hover:bg-black/10 dark:hover:bg-white/10 text-slate-500 dark:text-white/70 hover:text-slate-900 dark:hover:text-white transition-colors"
                   title="Slower"
                 >
                   <Rewind className="w-4 h-4" />
                 </button>
-                <span className="text-xs font-mono w-8 text-center">{speed}x</span>
+                <span className="text-xs font-mono w-8 text-center text-slate-800 dark:text-white">{speed}x</span>
                 <button 
                   onClick={() => setSpeed(Math.min(5, speed + 0.5))}
-                  className="p-1 rounded hover:bg-white/10 text-white/70 hover:text-white transition-colors"
+                  className="p-1 rounded hover:bg-black/10 dark:hover:bg-white/10 text-slate-500 dark:text-white/70 hover:text-slate-900 dark:hover:text-white transition-colors"
                   title="Faster"
                 >
                   <FastForward className="w-4 h-4" />
@@ -305,7 +305,7 @@ export default function Teleprompter({ onClose }: TeleprompterProps) {
                   setIsEditing(true);
                   setIsPlaying(false);
                 }}
-                className="p-2 bg-white/5 hover:bg-white/10 rounded-lg text-white/70 hover:text-white transition-colors ml-2"
+                className="p-2 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 rounded-lg text-slate-500 dark:text-white/70 hover:text-slate-900 dark:hover:text-white transition-colors ml-2"
                 title="Edit"
               >
                 <Edit2 className="w-4 h-4" />
@@ -316,20 +316,20 @@ export default function Teleprompter({ onClose }: TeleprompterProps) {
         
         <button 
           onClick={onClose}
-          className="p-2 hover:bg-white/10 rounded-full text-white/50 hover:text-white transition-colors"
+          className="p-2 hover:bg-black/10 dark:hover:bg-white/10 rounded-full text-slate-400 dark:text-white/50 hover:text-slate-900 dark:hover:text-white transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
       </div>
 
       {/* Content Area */}
-      <div className="flex-1 relative overflow-hidden bg-black/20">
+      <div className="flex-1 relative overflow-hidden bg-slate-100/50 dark:bg-black/20 transition-colors duration-300">
         {isEditing ? (
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder={lang === 'ar' ? 'اكتب أو تحدث والصق نص الاسكريبت هنا...' : 'Type, dictate or paste your script here...'}
-            className="w-full h-full p-8 bg-transparent text-white/90 text-2xl md:text-3xl leading-relaxed font-medium resize-none focus:outline-none focus:ring-0 placeholder-white/20"
+            className="w-full h-full p-8 bg-transparent text-slate-800 dark:text-white/90 text-2xl md:text-3xl leading-relaxed font-medium resize-none focus:outline-none focus:ring-0 placeholder-slate-400 dark:placeholder-white/20 transition-colors duration-300"
             dir={dir}
           />
         ) : (
@@ -340,11 +340,11 @@ export default function Teleprompter({ onClose }: TeleprompterProps) {
           >
             <div className="py-[200px] px-8">
               <p 
-                className={`text-4xl md:text-5xl leading-[1.6] font-bold text-white/90 whitespace-pre-wrap ${
+                className={`text-4xl md:text-5xl leading-[1.6] font-bold text-slate-900 dark:text-white/90 whitespace-pre-wrap transition-colors duration-300 ${
                   lang === 'ar' ? 'font-arabic' : ''
                 }`}
                 style={{
-                  textShadow: '0 4px 20px rgba(0,0,0,0.8)'
+                  textShadow: '0 4px 20px rgba(0,0,0,0.1)'
                 }}
               >
                 {text}
@@ -356,17 +356,17 @@ export default function Teleprompter({ onClose }: TeleprompterProps) {
         {/* Playback Fade Overlays */}
         {!isEditing && (
           <>
-            <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate-900 via-slate-900/50 to-transparent pointer-events-none" />
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent pointer-events-none" />
+            <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate-50 dark:from-slate-900 via-slate-50/50 dark:via-slate-900/50 to-transparent pointer-events-none transition-colors duration-300" />
+            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-50 dark:from-slate-900 via-slate-50/50 dark:via-slate-900/50 to-transparent pointer-events-none transition-colors duration-300" />
             {/* Reading line focus */}
-            <div className="absolute top-1/2 left-0 right-0 h-20 -translate-y-1/2 border-y-2 border-indigo-500/30 bg-indigo-500/5 pointer-events-none shadow-[inset_0_0_20px_rgba(99,102,241,0.1)]" />
+            <div className="absolute top-1/2 left-0 right-0 h-20 -translate-y-1/2 border-y-2 border-lime-500/30 dark:border-indigo-500/30 bg-lime-500/5 dark:bg-indigo-500/5 pointer-events-none shadow-[inset_0_0_20px_rgba(132,204,22,0.1)] dark:shadow-[inset_0_0_20px_rgba(99,102,241,0.1)] transition-colors duration-300" />
           </>
         )}
       </div>
 
       {/* Audio Actions Bar */}
       {audioUrl && !isListening && (
-        <div className="p-4 bg-slate-950/80 backdrop-blur-md border-t border-white/10 flex flex-wrap items-center justify-center gap-3 shrink-0">
+        <div className="p-4 bg-slate-100/90 dark:bg-slate-950/80 backdrop-blur-md border-t border-slate-200 dark:border-white/10 flex flex-wrap items-center justify-center gap-3 shrink-0 transition-colors duration-300">
           
           <button
             onClick={() => {
@@ -375,7 +375,7 @@ export default function Teleprompter({ onClose }: TeleprompterProps) {
               a.download = `voice-record-${Date.now()}.webm`;
               a.click();
             }}
-            className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-xl text-xs font-bold text-white transition-all shadow-lg"
+            className="flex items-center gap-2 px-4 py-2 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 rounded-xl text-xs font-bold text-slate-800 dark:text-white transition-all shadow-lg"
           >
             <Download className="w-4 h-4 text-emerald-400" />
             {lang === 'ar' ? 'حفظ الصوت' : 'Save Audio'}
@@ -396,14 +396,14 @@ export default function Teleprompter({ onClose }: TeleprompterProps) {
             disabled={isEnhancing || isAddingMusic}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-white transition-all shadow-lg ${
               isEnhancing 
-                ? 'bg-indigo-600/50 cursor-wait' 
-                : 'bg-indigo-600 hover:bg-indigo-500 shadow-indigo-500/20'
+                ? 'bg-lime-600/50 dark:bg-indigo-600/50 cursor-wait' 
+                : 'bg-lime-600 hover:bg-lime-500 shadow-lime-500/20 dark:bg-indigo-600 dark:hover:bg-indigo-500 dark:shadow-indigo-500/20'
             }`}
           >
             {isEnhancing ? (
               <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" />
             ) : (
-              <Wand2 className="w-4 h-4 text-indigo-200" />
+              <Wand2 className="w-4 h-4 text-lime-200 dark:text-indigo-200" />
             )}
             {lang === 'ar' ? (isEnhancing ? 'جاري التحسين...' : 'تنظيف، تجميل، وحفظ الصوت') : (isEnhancing ? 'Enhancing...' : 'Clean, Enhance & Save')}
           </button>
