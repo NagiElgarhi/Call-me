@@ -4,10 +4,11 @@ import { useLanguage } from '../contexts/LanguageContext';
 type RecordingState = 'idle' | 'requesting' | 'ready' | 'recording' | 'previewing' | 'submitting' | 'merging' | 'success' | 'error';
 
 export default function VideoRecorderWidget() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [state, setState] = useState<RecordingState>('idle');
   const [errorMsg, setErrorMsg] = useState('');
   const [recordingTime, setRecordingTime] = useState(0);
+  const [downloadInfo, setDownloadInfo] = useState<{ url: string, ext: string } | null>(null);
   
   const videoRef = useRef<HTMLVideoElement>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -81,7 +82,7 @@ export default function VideoRecorderWidget() {
 
     mediaRecorder.onstop = () => {
       const blob = new Blob(chunksRef.current, { type: mimeType });
-      setClips(prev => [...prev, blob]);
+      setClips([blob]);
       
       const url = URL.createObjectURL(blob);
       setPreviewUrl(url);
@@ -140,6 +141,10 @@ export default function VideoRecorderWidget() {
       URL.revokeObjectURL(previewUrl);
       setPreviewUrl(null);
     }
+    if (downloadInfo) {
+      URL.revokeObjectURL(downloadInfo.url);
+      setDownloadInfo(null);
+    }
     setClips([]);
     setState('idle');
     stopCamera();
@@ -149,41 +154,13 @@ export default function VideoRecorderWidget() {
   const submitVideo = async () => {
     if (clips.length === 0) return;
     
-    setState(clips.length > 1 ? 'merging' : 'submitting');
-    
-    try {
-      const formData = new FormData();
-      clips.forEach((clip, index) => {
-        formData.append('videos', clip, `clip-${index}.webm`);
-      });
+    const singleBlob = clips[0];
+    const finalUrl = URL.createObjectURL(singleBlob);
+    const ext = singleBlob.type.includes('mp4') ? 'mp4' : 'webm';
 
-      const response = await fetch('/api/merge', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (!response.ok) throw new Error('Merging failed');
-
-      const mergedBlob = await response.blob();
-      const finalUrl = URL.createObjectURL(mergedBlob);
-      const ext = mergedBlob.type.includes('mp4') ? 'mp4' : 'webm';
-
-      const a = document.createElement('a');
-      a.href = finalUrl;
-      a.download = `pitch-perfect-merged-${Date.now()}.${ext}`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      
-      URL.revokeObjectURL(finalUrl);
-
-      setState('success');
-      stopCamera();
-    } catch (err) {
-      console.error(err);
-      setErrorMsg('Failed to merge videos');
-      setState('error');
-    }
+    setDownloadInfo({ url: finalUrl, ext });
+    setState('success');
+    stopCamera();
   };
 
   const formatTime = (seconds: number) => {
@@ -273,6 +250,8 @@ export default function VideoRecorderWidget() {
                     state={state}
                     errorMsg={errorMsg}
                     hasClips={clips.length > 0}
+                    downloadInfo={downloadInfo}
+                    lang={lang}
                     onRequestCamera={requestCamera}
                     onStart={startRecording}
                     onStop={stopRecording}
@@ -288,11 +267,13 @@ export default function VideoRecorderWidget() {
 }
 
 function Controls({ 
-    state, errorMsg, hasClips, onRequestCamera, onStart, onStop, onAddAnother, onRetry, onSubmit, t 
+    state, errorMsg, hasClips, downloadInfo, lang, onRequestCamera, onStart, onStop, onAddAnother, onRetry, onSubmit, t 
 }: {
     state: RecordingState,
     errorMsg: string,
     hasClips: boolean,
+    downloadInfo: { url: string, ext: string } | null,
+    lang: string,
     onRequestCamera: () => void,
     onStart: () => void,
     onStop: () => void,
@@ -370,24 +351,18 @@ function Controls({
     if (state === 'previewing') {
         return (
             <Container>
-                <button 
-                    onClick={onAddAnother}
-                    className="w-full py-2 bg-indigo-500/20 text-indigo-300 hover:bg-indigo-500/30 rounded-xl text-[10px] font-bold uppercase transition-all mb-1"
-                >
-                    + {t('recordAnother')}
-                </button>
                 <div className="grid grid-cols-2 gap-2 w-full">
                     <button 
                         onClick={onRetry}
                         className="py-3 bg-white/10 hover:bg-white/20 rounded-xl text-[10px] font-bold uppercase transition-all"
                     >
-                        {t('retake')}
+                        {lang === 'ar' ? 'إعادة التسجيل' : 'Retake'}
                     </button>
                     <button 
                         onClick={onSubmit}
-                        className="py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-[10px] font-bold uppercase shadow-lg shadow-indigo-600/20 transition-all"
+                        className="py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold uppercase shadow-lg shadow-indigo-600/20 transition-all font-cairo"
                     >
-                        {hasClips ? t('mergeVideos') : t('submit')}
+                        {lang === 'ar' ? 'مشاركة ملف الفيديو' : 'Share Video File'}
                     </button>
                 </div>
             </Container>
@@ -397,13 +372,39 @@ function Controls({
     if (state === 'success') {
          return (
             <Container>
-                <div className="w-full py-3 bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 rounded-xl text-sm font-bold flex items-center justify-center gap-2">
+                <div className="w-full py-3 bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 rounded-xl text-sm font-bold flex items-center justify-center gap-2 mb-2">
                     <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
                     {t('sentSuccessfully')}
                 </div>
+                
+                <div className="grid grid-cols-2 gap-2 w-full mb-2">
+                    <button 
+                        onClick={() => {
+                            window.open('https://wa.me/201066802250', '_blank');
+                        }}
+                        className="py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold transition-all shadow-lg shadow-emerald-600/20"
+                    >
+                        {lang === 'ar' ? 'واتس اب' : 'WhatsApp'}
+                    </button>
+                    <button 
+                        onClick={() => {
+                            if (!downloadInfo) return;
+                            const a = document.createElement('a');
+                            a.href = downloadInfo.url;
+                            a.download = `pitch-perfect-merged-${Date.now()}.${downloadInfo.ext}`;
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
+                        }}
+                        className="py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold transition-all shadow-lg shadow-indigo-600/20"
+                    >
+                        {lang === 'ar' ? 'تحميل' : 'Download'}
+                    </button>
+                </div>
+
                 <button 
                     onClick={onRetry}
-                    className="mt-2 text-[10px] text-white/50 hover:text-white uppercase font-bold tracking-widest text-center"
+                    className="w-full text-[10px] text-white/50 hover:text-white uppercase font-bold tracking-widest text-center"
                 >
                     {t('recordAnother')}
                 </button>
