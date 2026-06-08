@@ -1,0 +1,11 @@
+{
+  "name": "PitchPerfect SaaS",
+  "description": "A modern SaaS landing page with a constrained 9:16 video recording widget for capturing focused pitches.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
