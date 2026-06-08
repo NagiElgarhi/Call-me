@@ -461,14 +461,14 @@ export default function InitiativeModal({ isOpen, onClose, lang, onStartAction }
 
               <div className="grid sm:grid-cols-2 gap-6">
                 {/* Point 1 */}
-                <div className="p-6 border border-white/5 bg-slate-900/50 rounded-2xl hover:border-white/10 transition-all flex flex-col gap-3">
-                  <div className="w-8 h-8 rounded-full bg-red-500/10 flex items-center justify-center text-red-400">
-                    <Heart className="w-4 h-4 fill-red-400/10" />
+                <div className="p-6 border border-slate-200 dark:border-white/5 bg-slate-50/50 dark:bg-slate-900/50 rounded-2xl hover:border-slate-300 dark:hover:border-white/10 transition-all flex flex-col gap-3">
+                  <div className="w-8 h-8 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 dark:text-red-400">
+                    <Heart className="w-4 h-4 fill-red-500/10 dark:fill-red-400/10" />
                   </div>
-                  <h3 className={`text-base font-bold text-white ${lang === 'ar' ? 'font-arabic' : ''}`}>
+                  <h3 className={`text-base font-bold text-slate-900 dark:text-white ${lang === 'ar' ? 'font-arabic' : ''}`}>
                     {lang === 'ar' ? '١. الاطمئنان وبث الأمان ومساحة الفضفضة' : '1. Mutual Comfort & Deep Venting'}
                   </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                     {lang === 'ar' 
                       ? 'تمثل الكلمات (طَمِّنِّي عَلى أَحْوَالَكْ، فَضْفَضْ عَنْ أَحْلَامَكْ) ملاذاً وهدنةً من تسارع الحياة الرقمية. المبادرة تسلب الستار عما يثقل القلوب وتدعو للتجرد ومشاركة أصدق الدعوات في دقيقتين تجعلان الإنسان يشعر بتقدير ذاتي عظيم.'
                       : '"Reassure me... Open up of your dreams" — representing a sanctuary and a truce from the rush of modern digital life. It strips away the facades of corporate pressure and invites raw, beautiful sincerity.'
@@ -477,14 +477,14 @@ export default function InitiativeModal({ isOpen, onClose, lang, onStartAction }
                 </div>
 
                 {/* Point 2 */}
-                <div className="p-6 border border-white/5 bg-slate-900/50 rounded-2xl hover:border-white/10 transition-all flex flex-col gap-3">
-                  <div className="w-8 h-8 rounded-full bg-indigo-500/10 flex items-center justify-center text-indigo-400">
+                <div className="p-6 border border-slate-200 dark:border-white/5 bg-slate-50/50 dark:bg-slate-900/50 rounded-2xl hover:border-slate-300 dark:hover:border-white/10 transition-all flex flex-col gap-3">
+                  <div className="w-8 h-8 rounded-full bg-lime-500/10 dark:bg-indigo-500/10 flex items-center justify-center text-lime-600 dark:text-indigo-400">
                     <Users className="w-4 h-4" />
                   </div>
-                  <h3 className={`text-base font-bold text-white ${lang === 'ar' ? 'font-arabic' : ''}`}>
+                  <h3 className={`text-base font-bold text-slate-900 dark:text-white ${lang === 'ar' ? 'font-arabic' : ''}`}>
                     {lang === 'ar' ? '٢. قوة الاستماع الحقيقي المخلص بالحب والقلب' : '2. Empathetic and Devoted Listening'}
                   </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                     {lang === 'ar' 
                       ? 'في زمن تتحدث فيه الشاشات ولا تصغي، تعلن المبادرة ميثاق الاستماع: (هِنِسْمَعَكْ مِنْ أَلْبِنَا، وْنِشَارٰكَك كل أَحْلَامَكْ). إنها وعدٌ بأن لكل إنسان قصة تستحق أن تروى، وأننا لا نهمل تفاصيل من غمروا حياتنا بالحب (إِحْكِي عَنْ نَاسْ عليك غَالْيِينْ).'
                       : '"We shall listen from our hearts, and share your dreams" — a covenant of sincere, non-judgmental listening in a hyper-connected yet disconnected world. Every story deserves to be heard, and every loving relationship honored.'
@@ -493,14 +493,14 @@ export default function InitiativeModal({ isOpen, onClose, lang, onStartAction }
                 </div>
 
                 {/* Point 3 */}
-                <div className="p-6 border border-white/5 bg-slate-900/50 rounded-2xl hover:border-white/10 transition-all flex flex-col gap-3">
-                  <div className="w-8 h-8 rounded-full bg-yellow-500/10 flex items-center justify-center text-yellow-400">
+                <div className="p-6 border border-slate-200 dark:border-white/5 bg-slate-50/50 dark:bg-slate-900/50 rounded-2xl hover:border-slate-300 dark:hover:border-white/10 transition-all flex flex-col gap-3">
+                  <div className="w-8 h-8 rounded-full bg-yellow-500/10 flex items-center justify-center text-yellow-600 dark:text-yellow-400">
                     <Sparkles className="w-4 h-4" />
                   </div>
-                  <h3 className={`text-base font-bold text-white ${lang === 'ar' ? 'font-arabic' : ''}`}>
+                  <h3 className={`text-base font-bold text-slate-900 dark:text-white ${lang === 'ar' ? 'font-arabic' : ''}`}>
                     {lang === 'ar' ? '٣. النور والبركة في أجمل الذكريات وحكايات الغد' : '3. Reliving Memory & Hope for Tomorrow'}
                   </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                     {lang === 'ar' 
                       ? 'التركيز على الوجدان البشري (إِحْكِي عَنْ أَجْمَلْ ذِكْرَى سَاكْنَةْ جُوَّهْ وِجْدَانَكْ، وَاحْكِي عَنْ حِلْمْ بُكْرَهْ شَايْفُو فِي طِيْفْ خَيَالَكْ) يشيد جسراً بين الماضي الدافئ والمستقبل الواعد، محفزاً العقل الباطن على التمسك بالأمل ومقاومة عقبات الحاضر.'
                       : '"Recall the most beautiful memory... And speak of tomorrow\'s dream" — bridging a warm past with a promising future. Reliving blissful moments stimulates positive neuro-networks and builds resilience against challenges.'
@@ -509,14 +509,14 @@ export default function InitiativeModal({ isOpen, onClose, lang, onStartAction }
                 </div>
 
                 {/* Point 4 */}
-                <div className="p-6 border border-white/5 bg-slate-900/50 rounded-2xl hover:border-white/10 transition-all flex flex-col gap-3">
-                  <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                <div className="p-6 border border-slate-200 dark:border-white/5 bg-slate-50/50 dark:bg-slate-900/50 rounded-2xl hover:border-slate-300 dark:hover:border-white/10 transition-all flex flex-col gap-3">
+                  <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
                     <Play className="w-4 h-4" />
                   </div>
-                  <h3 className={`text-base font-bold text-white ${lang === 'ar' ? 'font-arabic' : ''}`}>
+                  <h3 className={`text-base font-bold text-slate-900 dark:text-white ${lang === 'ar' ? 'font-arabic' : ''}`}>
                     {lang === 'ar' ? '٤. التأثير المجتمعي الإيجابي والإرشاد والصراحة' : '4. Healing Others through Sincere Sharing'}
                   </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                     {lang === 'ar' 
                       ? 'تختتم الكلمات برسالة سامية: (يْمْكِنْ صَوْتَكْ يِدِّي أَمَلْ لِيائس، وَيُمْكِنْ حَرْفْ مِنْ كَلَامَكْ يبأَا الحل). مشاركتك الصادقة بابتسامة وبشاشة (وِتٰبأَا الصَّرَاحَةْ طَرِيأَكْ) ليست مجرد فضفضة، بل قد تلهم شخصاً تائهاً وتجيب على تساؤلاته المعلقة.'
                       : '"Perhaps your voice gives hope... Sincerity is your way" — your raw, authentic self-expression could be the exact answer or lifeline a struggling soul needed. Vigor and joy are highly contagious and healing.'
@@ -543,20 +543,20 @@ export default function InitiativeModal({ isOpen, onClose, lang, onStartAction }
               </p>
 
               <div className="grid sm:grid-cols-3 gap-4 text-center mt-8">
-                <div className="p-4 border border-white/5 bg-slate-900/40 rounded-xl flex flex-col items-center">
-                  <span className="w-8 h-8 rounded-full bg-indigo-500/10 text-indigo-400 font-bold flex items-center justify-center text-sm mb-3">١</span>
-                  <h4 className="text-sm font-bold text-white mb-1">{lang === 'ar' ? 'اكتب الملقن' : 'Prepare Text'}</h4>
-                  <p className="text-[11px] text-slate-500">{lang === 'ar' ? 'اضغط على العنوان لكتابة نقاطك' : 'Write what you want on the screen'}</p>
+                <div className="p-4 border border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/40 rounded-xl flex flex-col items-center">
+                  <span className="w-8 h-8 rounded-full bg-lime-500/10 dark:bg-indigo-500/10 text-lime-600 dark:text-indigo-400 font-bold flex items-center justify-center text-sm mb-3">١</span>
+                  <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1">{lang === 'ar' ? 'اكتب الملقن' : 'Prepare Text'}</h4>
+                  <p className="text-[11px] text-slate-600 dark:text-slate-500">{lang === 'ar' ? 'اضغط على العنوان لكتابة نقاطك' : 'Write what you want on the screen'}</p>
                 </div>
-                <div className="p-4 border border-white/5 bg-slate-900/40 rounded-xl flex flex-col items-center">
-                  <span className="w-8 h-8 rounded-full bg-indigo-500/10 text-indigo-400 font-bold flex items-center justify-center text-sm mb-3">٢</span>
-                  <h4 className="text-sm font-bold text-white mb-1">{lang === 'ar' ? 'سجّل دقيقتين' : 'Record 2 mins'}</h4>
-                  <p className="text-[11px] text-slate-500">{lang === 'ar' ? 'تحدث بتلقائية وببشاشة' : 'Speak naturally & beautifully'}</p>
+                <div className="p-4 border border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/40 rounded-xl flex flex-col items-center">
+                  <span className="w-8 h-8 rounded-full bg-lime-500/10 dark:bg-indigo-500/10 text-lime-600 dark:text-indigo-400 font-bold flex items-center justify-center text-sm mb-3">٢</span>
+                  <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1">{lang === 'ar' ? 'سجّل دقيقتين' : 'Record 2 mins'}</h4>
+                  <p className="text-[11px] text-slate-600 dark:text-slate-500">{lang === 'ar' ? 'تحدث بتلقائية وببشاشة' : 'Speak naturally & beautifully'}</p>
                 </div>
-                <div className="p-4 border border-white/5 bg-slate-900/40 rounded-xl flex flex-col items-center">
-                  <span className="w-8 h-8 rounded-full bg-indigo-500/10 text-indigo-400 font-bold flex items-center justify-center text-sm mb-3">٣</span>
-                  <h4 className="text-sm font-bold text-white mb-1">{lang === 'ar' ? 'احصل على 4K' : 'Download in 4K'}</h4>
-                  <p className="text-[11px] text-slate-500">{lang === 'ar' ? 'حمّل الفيديو المدمج بجودة عالية' : 'Download merged video in 4K resolution'}</p>
+                <div className="p-4 border border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/40 rounded-xl flex flex-col items-center">
+                  <span className="w-8 h-8 rounded-full bg-lime-500/10 dark:bg-indigo-500/10 text-lime-600 dark:text-indigo-400 font-bold flex items-center justify-center text-sm mb-3">٣</span>
+                  <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1">{lang === 'ar' ? 'احصل على 4K' : 'Download in 4K'}</h4>
+                  <p className="text-[11px] text-slate-600 dark:text-slate-500">{lang === 'ar' ? 'حمّل الفيديو المدمج بجودة عالية' : 'Download merged video in 4K resolution'}</p>
                 </div>
               </div>
             </div>
@@ -564,20 +564,20 @@ export default function InitiativeModal({ isOpen, onClose, lang, onStartAction }
         </div>
 
         {/* Footer actions */}
-        <div className="px-6 py-5 border-t border-white/5 bg-slate-950/70 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
+        <div className="px-6 py-5 border-t border-slate-200 dark:border-white/5 bg-slate-50/70 dark:bg-slate-950/70 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between transition-colors duration-300">
           <p className="text-slate-500 text-xs text-center sm:text-right">
             {lang === 'ar' ? 'مبادرة لتخليد اللحظات وبث طاقة الأمل من الفرد للمجتمع' : 'An initiative to immortalize heartfelt moments of human hope'}
           </p>
           <div className="flex gap-2">
             <button
               onClick={onClose}
-              className="px-4 py-2 border border-white/10 rounded-full text-xs text-slate-300 hover:text-white bg-transparent hover:bg-white/5 transition-all"
+              className="px-4 py-2 border border-slate-300 dark:border-white/10 rounded-full text-xs text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-transparent hover:bg-slate-100 dark:hover:bg-white/5 transition-all"
             >
               {lang === 'ar' ? 'إغلاق' : 'Close'}
             </button>
             <button
               onClick={handleStart}
-              className="px-6 py-2 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-slate-950 hover:shadow-[0_0_20px_rgba(20,184,166,0.3)] transition-all font-bold text-xs rounded-full flex items-center justify-center gap-2"
+              className="px-6 py-2 bg-gradient-to-r from-lime-600 to-emerald-500 hover:from-lime-500 hover:to-emerald-400 dark:from-teal-500 dark:to-emerald-500 dark:hover:from-teal-400 dark:hover:to-emerald-400 text-white dark:text-slate-950 hover:shadow-[0_0_20px_rgba(132,204,22,0.3)] dark:hover:shadow-[0_0_20px_rgba(20,184,166,0.3)] transition-all font-bold text-xs rounded-full flex items-center justify-center gap-2"
             >
               {lang === 'ar' ? 'ابدأ الآن' : 'Get Started Now'}
               <ArrowRight className={`w-3.5 h-3.5 ${lang === 'ar' ? 'rotate-180' : ''}`} />

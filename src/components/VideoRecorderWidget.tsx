@@ -65,12 +65,26 @@ export default function VideoRecorderWidget() {
     if (!streamRef.current) return;
     
     chunksRef.current = [];
-    const mimeType = MediaRecorder.isTypeSupported('video/webm;codecs=vp9,opus') 
-        ? 'video/webm;codecs=vp9,opus' 
-        : 'video/webm';
+    
+    // Find supported mime type for cross-browser support
+    let mimeType = '';
+    const types = [
+        'video/webm;codecs=vp9,opus',
+        'video/webm;codecs=vp8,opus',
+        'video/webm',
+        'video/mp4',
+    ];
+    if (typeof MediaRecorder.isTypeSupported === 'function') {
+        for (const type of types) {
+            if (MediaRecorder.isTypeSupported(type)) {
+                mimeType = type;
+                break;
+            }
+        }
+    }
         
     const mediaRecorder = new MediaRecorder(streamRef.current, { 
-        mimeType,
+        ...(mimeType ? { mimeType } : {}),
         videoBitsPerSecond: 8000000 // 8 Mbps for high quality
     });
     

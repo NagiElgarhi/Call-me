@@ -114,7 +114,7 @@ export default function SaaSLayout() {
             </button>
             <button 
               onClick={() => setIsModalOpen(true)}
-              className="px-4 py-2 sm:px-5 sm:py-2.5 bg-lime-600 dark:bg-white text-white dark:text-slate-950 rounded-full text-xs font-bold hover:bg-lime-700 dark:hover:bg-slate-200 transition-colors shrink-0"
+              className="w-[150px] py-2 sm:py-2.5 bg-teal-800 hover:bg-teal-700 text-white rounded-full text-xs font-bold transition-all duration-300 animate-[pulse_3s_ease-in-out_infinite] hover:scale-105 hover:shadow-[0_0_15px_rgba(17,94,89,0.5)] shrink-0"
             >
               {t('getStarted')}
             </button>
@@ -129,9 +129,6 @@ export default function SaaSLayout() {
             <Teleprompter onClose={() => setShowTeleprompter(false)} />
           ) : (
             <>
-              <div className="inline-block px-3 py-1 mb-6 rounded-full bg-lime-500/10 dark:bg-indigo-500/10 border border-lime-500/30 dark:border-indigo-500/20 text-lime-700 dark:text-indigo-400 text-[10px] uppercase font-bold tracking-widest">
-                {t('badge')}
-              </div>
               
               <h1 
                 onClick={() => setShowTeleprompter(true)}

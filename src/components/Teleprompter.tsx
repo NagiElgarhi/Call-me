@@ -114,7 +114,12 @@ export default function Teleprompter({ onClose }: TeleprompterProps) {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
         streamRef.current = stream;
         
-        const mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
+        let mimeType = 'audio/webm';
+        if (typeof MediaRecorder.isTypeSupported === 'function' && MediaRecorder.isTypeSupported('audio/mp4')) {
+            mimeType = 'audio/mp4'; // Fallback for iOS/Safari
+        }
+
+        const mediaRecorder = new MediaRecorder(stream, mimeType ? { mimeType } : undefined);
         mediaRecorderRef.current = mediaRecorder;
         
         mediaRecorder.ondataavailable = (e) => {
