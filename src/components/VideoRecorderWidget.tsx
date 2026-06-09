@@ -165,16 +165,71 @@ export default function VideoRecorderWidget() {
     setTimeout(requestCamera, 100);
   };
 
+  const shareFile = async () => {
+    if (clips.length === 0) return false;
+    const singleBlob = clips[0];
+    
+    let ext = 'webm';
+    if (singleBlob.type.includes('mp4')) {
+      ext = 'mp4';
+    } else if (singleBlob.type.includes('ogg')) {
+      ext = 'ogg';
+    } else if (singleBlob.type.includes('mov')) {
+      ext = 'mov';
+    }
+    
+    const mimeType = singleBlob.type || `video/${ext}`;
+    const filename = `my-story-${Date.now()}.${ext}`;
+    
+    try {
+      const file = new File([singleBlob], filename, { type: mimeType });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          files: [file],
+          title: lang === 'ar' ? 'مبادرة كلمني عن نفسك' : 'Tell me about yourself',
+          text: lang === 'ar' 
+            ? 'مشاركتي في مبادرة "كلمني عن نفسك في دقيقتين"! 🎙️✨' 
+            : 'My participation in the "Tell me about yourself in two minutes" initiative! 🎙️✨',
+        });
+        return true;
+      }
+    } catch (err) {
+      console.error("Web Share failed or cancelled:", err);
+    }
+    return false;
+  };
+
+  const handleShareFileDirectly = async () => {
+    await shareFile();
+  };
+
   const submitVideo = async () => {
     if (clips.length === 0) return;
     
     const singleBlob = clips[0];
     const finalUrl = URL.createObjectURL(singleBlob);
-    const ext = singleBlob.type.includes('mp4') ? 'mp4' : 'webm';
+    
+    let ext = 'webm';
+    if (singleBlob.type.includes('mp4')) {
+      ext = 'mp4';
+    } else if (singleBlob.type.includes('ogg')) {
+      ext = 'ogg';
+    } else if (singleBlob.type.includes('mov')) {
+      ext = 'mov';
+    }
 
     setDownloadInfo({ url: finalUrl, ext });
     setState('success');
     stopCamera();
+
+    // Trigger native share prompt automatically as well when they click submit
+    setTimeout(async () => {
+      try {
+        await shareFile();
+      } catch (e) {
+        console.error("Auto share failed", e);
+      }
+    }, 50);
   };
 
   const formatTime = (seconds: number) => {
@@ -272,6 +327,7 @@ export default function VideoRecorderWidget() {
                     onAddAnother={addAnotherClip}
                     onRetry={retry}
                     onSubmit={submitVideo}
+                    onShareFile={handleShareFileDirectly}
                     t={t}
                 />
             </div>
@@ -281,7 +337,7 @@ export default function VideoRecorderWidget() {
 }
 
 function Controls({ 
-    state, errorMsg, hasClips, downloadInfo, lang, onRequestCamera, onStart, onStop, onAddAnother, onRetry, onSubmit, t 
+    state, errorMsg, hasClips, downloadInfo, lang, onRequestCamera, onStart, onStop, onAddAnother, onRetry, onSubmit, onShareFile, t 
 }: {
     state: RecordingState,
     errorMsg: string,
@@ -294,6 +350,7 @@ function Controls({
     onAddAnother: () => void,
     onRetry: () => void,
     onSubmit: () => void,
+    onShareFile: () => void,
     t: (key: string) => string
 }) {
     const Container = ({ children }: { children: React.ReactNode }) => (
@@ -386,39 +443,70 @@ function Controls({
     if (state === 'success') {
          return (
             <Container>
-                <div className="w-full py-3 bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 rounded-xl text-sm font-bold flex items-center justify-center gap-2 mb-2">
+                <div className="w-full py-2 bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 rounded-xl text-xs font-bold flex items-center justify-center gap-2 mb-2">
                     <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
                     {t('sentSuccessfully')}
                 </div>
                 
+                {/* Primary direct share button for file support */}
+                <button 
+                    onClick={onShareFile}
+                    className="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold uppercase transition-all shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2 mb-2 hover:scale-[1.02] pointer-events-auto shrink-0"
+                >
+                    <span>📤 {lang === 'ar' ? 'مشاركة الفيديو كملف مباشرة' : 'Share Video Directly'}</span>
+                </button>
+
+                {/* Secondary standard mechanisms */}
                 <div className="grid grid-cols-2 gap-2 w-full mb-2">
                     <button 
                         onClick={() => {
-                            window.open('https://wa.me/201066802250', '_blank');
+                            if (downloadInfo) {
+                                const a = document.createElement('a');
+                                a.href = downloadInfo.url;
+                                a.download = `my-video-${Date.now()}.${downloadInfo.ext}`;
+                                document.body.appendChild(a);
+                                a.click();
+                                document.body.removeChild(a);
+                            }
+                            const whatsappMsg = lang === 'ar' 
+                                ? 'السلام عليكم، لقد قمت بتسجيل مشاركتي في مبادرة "كلمني عن نفسك في دقيقتين" وهذا هو ملف الفيديو.' 
+                                : 'Hello, I have recorded my video for the "Tell me about yourself in two minutes" initiative and this is the video file.';
+                            setTimeout(() => {
+                                window.open(`https://wa.me/201066802250?text=${encodeURIComponent(whatsappMsg)}`, '_blank');
+                            }, 500);
                         }}
                         className="py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold transition-all shadow-lg shadow-emerald-600/20"
                     >
-                        {lang === 'ar' ? 'واتس اب' : 'WhatsApp'}
+                        💬 {lang === 'ar' ? 'حفظ ومشاركة عبر واتساب' : 'Save & Share via WhatsApp'}
                     </button>
                     <button 
                         onClick={() => {
                             if (!downloadInfo) return;
                             const a = document.createElement('a');
                             a.href = downloadInfo.url;
-                            a.download = `pitch-perfect-merged-${Date.now()}.${downloadInfo.ext}`;
+                            a.download = `my-video-${Date.now()}.${downloadInfo.ext}`;
                             document.body.appendChild(a);
                             a.click();
                             document.body.removeChild(a);
                         }}
-                        className="py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold transition-all shadow-lg shadow-indigo-600/20"
+                        className="py-3 bg-teal-800 hover:bg-teal-700 text-white rounded-xl text-xs font-bold transition-all shadow-lg shadow-teal-900/10"
                     >
-                        {lang === 'ar' ? 'تحميل' : 'Download'}
+                        💾 {lang === 'ar' ? 'تحميل الفيديو' : 'Download'}
                     </button>
+                </div>
+
+                {/* Helpful explanatory tip for WhatsApp file upload constraints */}
+                <div className="bg-white/5 border border-white/10 rounded-xl p-2.5 mb-2 text-center">
+                    <p className="text-[10px] text-white/80 leading-normal font-sans">
+                        {lang === 'ar' 
+                            ? '💡 تنويه: عند الضغط على "حفظ ومشاركة عبر واتساب" سيتم تنزيل الفيديو أولاً بجهازك ثم سيفتح تطبيق واتساب لتتمكن من إرفاقه في المحادثة بسهولة.' 
+                            : '💡 Tip: Clicking "Save & Share via WhatsApp" will download the video first, then open WhatsApp so you can easily attach it to the chat.'}
+                    </p>
                 </div>
 
                 <button 
                     onClick={onRetry}
-                    className="w-full text-[10px] text-white/50 hover:text-white uppercase font-bold tracking-widest text-center"
+                    className="w-full text-[10px] text-white/50 hover:text-white uppercase font-bold tracking-widest text-center py-1 mt-1"
                 >
                     {t('recordAnother')}
                 </button>

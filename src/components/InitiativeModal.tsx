@@ -246,101 +246,85 @@ export default function InitiativeModal({ isOpen, onClose, lang, onStartAction }
             <div className="space-y-8 max-w-3xl mx-auto">
               {lang === 'ar' ? (
                 /* Arabic Presentation */
-                <div className="space-y-8 text-right font-arabic" dir="rtl">
-                  <div className="flex flex-col items-center text-center space-y-6 mb-8">
-                    {/* Heart-Microphone Logo */}
-                    <div className="relative w-24 h-24 flex items-center justify-center">
-                      <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/20 via-rose-500/20 to-red-500/25 rounded-full blur-xl animate-pulse" />
-                      <div className="w-20 h-20 rounded-[2rem] bg-slate-950/80 border border-amber-500/30 flex items-center justify-center relative group shadow-2xl backdrop-blur-sm">
-                        <Heart className="w-12 h-12 text-rose-500/30 absolute fill-rose-500/10 group-hover:scale-110 transition-transform duration-500" />
-                        <Mic className="w-7 h-7 text-amber-400 drop-shadow-[0_0_10px_rgba(245,158,11,0.8)] relative z-10 animate-bounce" />
+                <div className="space-y-6 text-right font-arabic" dir="rtl">
+                  {/* Decorative Header with logo */}
+                  <div className="flex flex-col items-center text-center space-y-4 mb-2">
+                    <div className="relative w-20 h-20 flex items-center justify-center">
+                      <div className="absolute inset-0 bg-gradient-to-tr from-[#D4AF37]/20 to-amber-500/25 rounded-full blur-xl animate-pulse" />
+                      <div className="w-16 h-16 rounded-[1.5rem] bg-slate-950/95 border border-[#D4AF37]/35 flex items-center justify-center relative group shadow-2xl backdrop-blur-sm">
+                        <Heart className="w-10 h-10 text-rose-500/20 absolute fill-rose-500/10 group-hover:scale-110 transition-transform duration-500" />
+                        <Mic className="w-6 h-6 text-[#D4AF37] drop-shadow-[0_0_10px_rgba(212,175,55,0.8)] relative z-10 animate-bounce" />
                       </div>
                     </div>
-
-                    <h2 className="text-[30px] leading-snug font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-500 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
-                      "كلمني عن نفسك في دقيقتين": مساحة دافئة للاستماع وإحياء الأمل في القلوب
+                    <h2 className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-[#D4AF37] to-amber-400 drop-shadow-sm">
+                      مبادرة كلمني عن نفسك في دقيقتين
                     </h2>
-                    <div className="w-24 h-1 bg-gradient-to-r from-amber-500 to-yellow-400 rounded-full"></div>
+                    <div className="w-32 h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent rounded-full"></div>
                   </div>
 
-                  <div className="space-y-8 text-slate-700 dark:text-slate-200 leading-relaxed transition-colors duration-300">
-                    <p className="text-sm md:text-base text-slate-600 dark:text-slate-300 border-r-4 border-amber-500/50 pr-4 py-1 italic bg-black/[0.02] dark:bg-white/[0.02] rounded-l-xl transition-colors duration-300">
-                      في عالم متسارع يركض فيه الجميع دون توقف، نادراً ما نجد من ينصت إلينا بقلب صادق، أو يمنحنا اللحظة لنعبر عما يسكن وجداننا. من هنا، تنطلق مبادرة <strong className="text-amber-600 dark:text-amber-300">"كلمني عن نفسك في دقيقتين"</strong> كدعوة دافئة ومساحة إنسانية خالصة، تهدف إلى إعادة الاعتبار لقيمة الكلمة الصادقة وأثر الاستماع في حياة البشر.
-                    </p>
-                    
-                    <p className="text-sm md:text-base text-slate-600 dark:text-slate-300 pr-1 transition-colors duration-300">
-                      المبادرة ليست مجرد لقاء عابر، بل هي جسر ممتد من القلوب وإلى القلوب، تسعى لاستكشاف الحكايات المنسية في تفاصيل الحياة اليومية، والإنصات إلى نبض الشارع وأحلام البسطاء والمبدعين على حد سواء.
+                  {/* Main Container with Deep Slate/Charcoal background and Light Gray Text */}
+                  <div className="bg-slate-900 border border-[#D4AF37]/15 rounded-[2rem] p-6 md:p-8 space-y-6 shadow-xl relative overflow-hidden backdrop-blur-sm">
+                    {/* Abstract background decorative lights */}
+                    <div className="absolute top-0 right-0 w-48 h-48 bg-[#D4AF37]/5 rounded-full blur-[60px] pointer-events-none" />
+                    <div className="absolute bottom-0 left-0 w-48 h-48 bg-amber-500/5 rounded-full blur-[60px] pointer-events-none" />
+
+                    {/* Introductory elegant block quote */}
+                    <p className="text-base md:text-lg text-slate-200 border-r-4 border-[#D4AF37] pr-4 py-2 italic font-medium leading-relaxed bg-white/[0.03] rounded-l-xl">
+                      في المدينة ، تتقاطع فيها الوجوه كما تتقاطع الأزقة القديمة، يمضي الناس كل يوم حاملين فوق أكتافهم حكايات لا يراها أحد. يبتسمون أحيانًا، ويخفون خلف الابتسامة أحلامًا مؤجلة، وذكريات عزيزة، وأسئلة تبحث عن جواب. وبين ضجيج الحياة وصخب الأيام، يظل الإنسان في حاجة إلى من ينصت إليه، لا ليسمع صوته فقط، بل ليسمع ما وراء الكلمات.
                     </p>
 
-                    {/* Pillars/Axes Section */}
-                    <div className="space-y-4">
-                      <h3 className="text-lg md:text-xl font-bold text-amber-600 dark:text-amber-300 flex items-center gap-2 border-b border-black/5 dark:border-white/5 pb-2 transition-colors duration-300">
-                        <Sparkles className="w-5 h-5 text-amber-500 dark:text-amber-400" />
-                        محاور المبادرة: ماذا تحمل الدقيقتين؟
-                      </h3>
-                      <p className="text-xs text-slate-500 dark:text-slate-400 transition-colors duration-300">
-                        تتجاوز المبادرة بأسئلتها العميقة والبسيطة قشور التعارف التقليدي، لتبحر في عمق التجربة الإنسانية من خلال عدة محاور تلخصها هذه الدقائق المعدودة:
+                    {/* Core description text in clean light gray and spacious paragraph separation */}
+                    <div className="space-y-5 text-slate-300 text-sm md:text-base leading-loose">
+                      <p>
+                        من هنا جاءت مبادرة <strong className="text-amber-400 font-bold">"كلمني عن نفسك في دقيقتين"</strong>، كنافذة صغيرة تفتح على عوالم كبيرة تسكن داخل البشر. ليست المبادرة مسابقة ولا استعراضًا للقدرات، وإنما دعوة صادقة لكل إنسان أن يمنح نفسه لحظتين من الصدق، يحكي فيهما عن رحلته في هذه الحياة، وعن الأشياء التي صنعت منه ما هو عليه اليوم.
                       </p>
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div className="p-4 rounded-2xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5 hover:border-amber-500/30 transition-all group">
-                          <span className="text-sm font-bold text-amber-600 dark:text-amber-300 group-hover:text-amber-500 dark:group-hover:text-amber-200 transition-colors">✨ فضفضة الأحلام والآمال:</span>
-                          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 transition-colors duration-300">مساحة حرة ليتحدث كل شخص عن طموحاته، خططه في الدنيا، وكيف يسعى لتحقيق أحلامه، مع تمني القبول والتحقق من الله سبحانه وتعالى.</p>
-                        </div>
-                        <div className="p-4 rounded-2xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5 hover:border-amber-500/30 transition-all group">
-                          <span className="text-sm font-bold text-amber-600 dark:text-amber-300 group-hover:text-amber-500 dark:group-hover:text-amber-200 transition-colors">🧠 مخزن الذكريات والمشاعر:</span>
-                          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 transition-colors duration-300">العودة إلى أجمل ذكريات الماضي التي ما زالت تسكن الوجدان، ومشاركة أطياف حلم الغد الذي يلوح في الأفق.</p>
-                        </div>
-                        <div className="p-4 rounded-2xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5 hover:border-amber-500/30 transition-all group">
-                          <span className="text-sm font-bold text-amber-600 dark:text-amber-300 group-hover:text-amber-500 dark:group-hover:text-amber-200 transition-colors">🤝 الامتنان للروابط الإنسانية:</span>
-                          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 transition-colors duration-300">الحديث عن الأشخاص الغاليين الذين يملؤون الحياة حباً، والمواقف المحفورة في الذاكرة والتي رسمت ملامح الطريق الحالي.</p>
-                        </div>
-                        <div className="p-4 rounded-2xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5 hover:border-amber-500/30 transition-all group">
-                          <span className="text-sm font-bold text-amber-600 dark:text-amber-300 group-hover:text-amber-500 dark:group-hover:text-amber-200 transition-colors">🦾 التحدي ومواجهة الصعاب:</span>
-                          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 transition-colors duration-300">تشجيع الأفراد على مشاركة لحظات الأمل والتحديات التي يمرون بها، كنوع من الدعم المتبادل الذي يقوي العزائم.</p>
-                        </div>
-                      </div>
+
+                      <p>
+                        في دقيقتين فقط، قد يستعيد أحدهم ذكرى جميلة ما زالت تضيء قلبه كلما أظلمت الأيام. وقد يروي آخر حلمًا يطارده منذ سنوات، ينتظر له بابًا يُفتح أو فرصة تأتي في موعدها. وربما يتحدث شخص عن أم كانت دعواتها زاد الطريق، أو عن أب ترك في روحه أثرًا لا يمحوه الزمن، أو عن صديق كان سندًا في ساعة ضيق.
+                      </p>
+
+                      <p className="border-r border-slate-800 pr-3">
+                        هذه الدقائق القليلة ليست زمنًا محدودًا بقدر ما هي مساحة واسعة للبوح. مساحة يتحدث فيها الإنسان عن أفراحه الصغيرة التي لا يلتفت إليها أحد، وعن انتصاراته الخفية التي لم تُكتب في الصحف، وعن معاركه التي خاضها بصمت حتى خرج منها أكثر قوة ونضجًا.
+                      </p>
+
+                      <p>
+                        تؤمن المبادرة بأن لكل إنسان قصة تستحق أن تُسمع، وأن الكلمات الصادقة تملك قدرة عجيبة على مد الجسور بين القلوب. فكم من تجربة بسيطة منحت الأمل لشخص كان يوشك أن يفقده، وكم من حكاية صادقة أعادت الثقة إلى نفس أنهكها اليأس، وكم من ذكرى جميلة جعلت الآخرين يتذكرون أن في الحياة ما يستحق الامتنان.
+                      </p>
+
+                      <p>
+                        ولأن المشاركة يجب أن تكون سهلة ومريحة، يكفي أن يجهز المشارك الكاميرا والميكروفون، ثم يقف أمام العدسة كما يقف أمام صديق قديم يعرف كيف ينصت. يتحدث بعفوية، ويستعين بملقن النصوص إن أراد ترتيب أفكاره، ثم يراجع تسجيله ويرسله لتصل حكايته إلى غرفة التقييم، ومنها إلى قلوب المستمعين.
+                      </p>
+
+                      <p className="bg-slate-950/60 p-4 rounded-2xl border border-slate-800/80">
+                        إن <strong className="text-white">"كلمني عن نفسك في دقيقتين"</strong> ليست مجرد مبادرة إعلامية، بل محاولة لإحياء قيمة إنسانية أصيلة كادت تضيع وسط العجلة والانشغال؛ قيمة الاستماع للآخرين والاهتمام بحكاياتهم. إنها دعوة مفتوحة لكل صاحب حلم، ولكل من يحمل ذكرى جميلة، ولكل من يريد أن يترك أثرًا طيبًا في نفوس الناس.
+                      </p>
+
+                      <p className="text-slate-200 font-medium pt-2">
+                        فلا تتردد. اجلس أمام الكاميرا، وافتح نافذة قلبك، واترك كلماتك تمضي في طريقها. قد تكون دقيقتان من وقتك سببًا في ابتسامة إنسان، أو بارقة أمل في قلب متعب، أو بداية حكاية جديدة لشخص كان يبحث عن النور. تكلم عن نفسك، فنحن هنا لنستمع.
+                      </p>
                     </div>
 
-                    {/* Vision & Objectives */}
-                    <div className="space-y-4">
-                      <h3 className="text-lg md:text-xl font-bold text-amber-300 flex items-center gap-2 border-b border-white/5 pb-2">
-                        <Compass className="w-5 h-5 text-amber-400" />
-                        رؤية المبادرة وأهدافها
-                      </h3>
-                      <p className="text-xs text-slate-400">
-                        تؤمن مبادرة <strong className="text-amber-300">"كلمني عن نفسك في دقيقتين"</strong> بقوة الأثر السحري للكلمة الصادقة، وتتلخص رؤيتها في النقاط التالية:
-                      </p>
-                      
-                      <div className="p-4 border-r-4 border-l-0 border-amber-500 bg-amber-500/10 rounded-l-2xl my-4 italic text-sm md:text-base text-slate-200">
-                        <strong>الإنصات بقلب حاضر:</strong> نحن هنا لنسمعك من أعماق قلوبنا، ونشاركك كل تفاصيل أحلامك وطموحاتك دون إطلاق أحكام.
+                    {/* Elegant Official Call to Action panel with link */}
+                    <div className="mt-8 pt-6 border-t border-slate-800/60 flex flex-col items-center justify-center text-center space-y-4">
+                      <div className="bg-[#D4AF37]/10 border border-[#D4AF37]/25 rounded-2xl p-5 w-full">
+                        <p className="text-amber-300 font-bold text-base mb-2">
+                          شارك معنا المبادرة وكن صاحب السبق.
+                        </p>
+                        <p className="text-slate-400 text-xs mb-4">
+                          إضغط على الصفحة الرسمية للمبادرة ⤵️ وابدأ الآن
+                        </p>
+                        <a
+                          href="https://www.facebook.com/share/1LR9z917XK/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-6 py-3 bg-[#D4AF37] hover:bg-amber-500 text-slate-950 font-bold rounded-xl transition-all shadow-lg shadow-[#D4AF37]/20 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                        >
+                          <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                            <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z" />
+                          </svg>
+                          الصفحة الرسمية للمبادرة على فيسبوك
+                        </a>
                       </div>
-
-                      <div className="space-y-3 pr-1">
-                        <div className="flex items-start gap-2.5">
-                          <span className="text-amber-400 mt-1">💡</span>
-                          <p className="text-sm text-slate-300"><strong className="text-white">فتح أبواب الأمل:</strong> قد تكون الكلمة العفوية أو التجربة الشخصية التي ترويها في دقيقتين بمثابة طاقة نور تفتح باباً مغلقاً أو تقوي أقداماً تعبت من السير.</p>
-                        </div>
-                        <div className="flex items-start gap-2.5">
-                          <span className="text-amber-400 mt-1">💡</span>
-                          <p className="text-sm text-slate-300"><strong className="text-white font-bold">إلهام التائهين:</strong> إن حكايات الصمود، الفرح، والتحدي التي تخرج ببشاشة وصراحة مطلقة، قادرة على أن تصبح دليلاً يلهم أشخاصاً ضلوا طريقهم أو تملكهم اليأس.</p>
-                        </div>
-                        <div className="flex items-start gap-2.5">
-                          <span className="text-amber-400 mt-1">💡</span>
-                          <p className="text-sm text-slate-300"><strong className="text-white font-bold">صناعة الحلول:</strong> أحياناً، مجرد البوح وتدبر الحروف والنطق بالمشكلة يحمل في طياته مفتاح الحل، وربما يجد المستمع في حكايتك مخرجاً لأزمته.</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Call to action invitation card */}
-                    <div className="p-6 rounded-2xl bg-gradient-to-tr from-amber-50 dark:from-amber-500/10 via-[#fdfdf9] dark:via-slate-900 to-[#fdfdf9] dark:to-slate-900 border border-amber-500/20 relative overflow-hidden text-right transition-colors duration-300">
-                      <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
-                      <h3 className="text-lg font-bold text-amber-600 dark:text-amber-300 mb-2">📢 دعوة للمشاركة</h3>
-                      <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-                        إن مبادرة <strong>"كلمني عن نفسك في دقيقتين"</strong> تفتح ذراعيها لكل عابر سبيل، لكل صاحب حلم، ولكل من يملك قصة تستحق أن تُروى. شعارنا دائماً هو <strong className="text-amber-600 dark:text-amber-300">الصراحة والبشاشة</strong>، ويقيننا أن دقيقتين من وقتك قد تصنع فارقاً كبيراً في حياة الآخرين، فصوتك يملك دائماً القدرة على منح الأمل.
-                      </p>
-                      <p className="text-sm text-amber-600 dark:text-amber-300 font-extrabold text-center border-t border-black/5 dark:border-white/5 pt-4">
-                        تكلم، فضفض، وشاركنا حكايتك.. نحن في انتظارك لنسمعك بألبنا!
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -528,35 +512,72 @@ export default function InitiativeModal({ isOpen, onClose, lang, onStartAction }
           )}
 
           {activeTab === 'guide' && (
-            <div className="space-y-6 max-w-2xl mx-auto text-center py-6">
-              <div className="w-16 h-16 rounded-full bg-indigo-500/10 flex items-center justify-center text-indigo-400 mx-auto mb-4 animate-pulse">
-                <Heart className="w-8 h-8 fill-indigo-400/20" />
+            <div className="space-y-8 max-w-5xl mx-auto py-6" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+              <div className="text-center space-y-3 mb-6">
+                <div className="w-16 h-16 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/20 flex items-center justify-center text-[#D4AF37] mx-auto animate-pulse">
+                  <Heart className="w-8 h-8 fill-[#D4AF37]/20" />
+                </div>
+                <h2 className={`text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-[#D4AF37] to-amber-400 drop-shadow-sm ${lang === 'ar' ? 'font-arabic' : ''}`}>
+                  {lang === 'ar' ? 'كيف تبدأ مشاركتك في المبادرة؟' : 'How Do You Participate?'}
+                </h2>
+                <p className="text-slate-400 text-sm max-w-md mx-auto leading-relaxed">
+                  {lang === 'ar' 
+                    ? 'اتبع هذا الدليل الإرشادي المبسط للبدء في صياغة قصتك وتوثيقها بأدوات احترافية مدمجة.'
+                    : 'Follow this simplified guide to craft and document your story using our professional built-in tools.'
+                  }
+                </p>
               </div>
-              <h2 className={`text-2xl font-bold text-white ${lang === 'ar' ? 'font-arabic' : ''}`}>
-                {lang === 'ar' ? 'كيف تبدأ مشاركتك في المبادرة؟' : 'How Do You Participate?'}
-              </h2>
-              <p className="text-slate-400 text-sm max-w-md mx-auto leading-relaxed">
-                {lang === 'ar' 
-                  ? 'بكل بساطة يمكنك استخدام الأدوات المدمجة لتسجيل مقطعك أو كتابة أفكارك، لترسلها مباشرة.'
-                  : 'Simply use our web app widgets to record or merge clips, then download your final video or submit.'
-                }
-              </p>
 
-              <div className="grid sm:grid-cols-3 gap-4 text-center mt-8">
-                <div className="p-4 border border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/40 rounded-xl flex flex-col items-center">
-                  <span className="w-8 h-8 rounded-full bg-lime-500/10 dark:bg-indigo-500/10 text-lime-600 dark:text-indigo-400 font-bold flex items-center justify-center text-sm mb-3">١</span>
-                  <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1">{lang === 'ar' ? 'اكتب الملقن' : 'Prepare Text'}</h4>
-                  <p className="text-[11px] text-slate-600 dark:text-slate-500">{lang === 'ar' ? 'اضغط على العنوان لكتابة نقاطك' : 'Write what you want on the screen'}</p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                {/* Step 1 */}
+                <div className="p-6 md:p-8 border border-slate-800 bg-slate-900/60 rounded-[2rem] hover:border-[#D4AF37]/30 transition-all flex flex-col items-center text-center group shadow-md relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-[#D4AF37]/5 rounded-full blur-2xl pointer-events-none" />
+                  <span className="w-12 h-12 rounded-full bg-[#D4AF37]/10 text-[#D4AF37] font-bold flex items-center justify-center text-lg mb-4 border border-[#D4AF37]/35 shadow-inner">
+                    {lang === 'ar' ? '١' : '1'}
+                  </span>
+                  <h4 className="text-base font-bold text-slate-100 mb-3 group-hover:text-[#D4AF37] transition-colors">
+                    {lang === 'ar' ? 'اكتب الملقن ونظّم أفكارك' : 'Prepare the Teleprompter'}
+                  </h4>
+                  <p className="text-xs text-slate-300 leading-loose text-justify font-normal">
+                    {lang === 'ar' 
+                      ? 'ابدأ أولى خطواتك بكتابة وترتيب أفكارك ونقاط حكايتك الأساسية داخل أداة ملقن النصوص الذكية المدمجة في المنصة. تتيح لك هذه الأداة ضبط حجم الخط والسرعة المناسبة لقراءة الكلمات بسلاسة تامة أثناء جلوسك بثقة أمام الكاميرا، مما يساعدك على التحدث بتدفق طبيعي وعفوية مطلقة دون تشتت أو نسيان لأي تفاصيل ملهمة من قصتك الشخصية.'
+                      : 'Begin your journey by writing and organizing your main ideas and key talking points inside our intelligent, custom-built teleprompter tool. Set the perfect font size and scroll speed to comfortably read your message while maintaining confident eye contact with the camera, ensuring a natural, eloquent delivery that speaks directly from your heart.'
+                    }
+                  </p>
                 </div>
-                <div className="p-4 border border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/40 rounded-xl flex flex-col items-center">
-                  <span className="w-8 h-8 rounded-full bg-lime-500/10 dark:bg-indigo-500/10 text-lime-600 dark:text-indigo-400 font-bold flex items-center justify-center text-sm mb-3">٢</span>
-                  <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1">{lang === 'ar' ? 'سجّل دقيقتين' : 'Record 2 mins'}</h4>
-                  <p className="text-[11px] text-slate-600 dark:text-slate-500">{lang === 'ar' ? 'تحدث بتلقائية وببشاشة' : 'Speak naturally & beautifully'}</p>
+
+                {/* Step 2 */}
+                <div className="p-6 md:p-8 border border-slate-800 bg-slate-900/60 rounded-[2rem] hover:border-[#D4AF37]/30 transition-all flex flex-col items-center text-center group shadow-md relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-[#D4AF37]/5 rounded-full blur-2xl pointer-events-none" />
+                  <span className="w-12 h-12 rounded-full bg-[#D4AF37]/10 text-[#D4AF37] font-bold flex items-center justify-center text-lg mb-4 border border-[#D4AF37]/35 shadow-inner">
+                    {lang === 'ar' ? '٢' : '2'}
+                  </span>
+                  <h4 className="text-base font-bold text-slate-100 mb-3 group-hover:text-[#D4AF37] transition-colors">
+                    {lang === 'ar' ? 'سجّل دقيقتين ببشاشة وتلقائية' : 'Spontaneous 2-Min Record'}
+                  </h4>
+                  <p className="text-xs text-slate-300 leading-loose text-justify font-normal">
+                    {lang === 'ar' 
+                      ? 'قم بتشغيل الكاميرا والميكروفون للبدء في توثيق مقطعك المصور بمدة أقصاها دقيقتان. تذكر دائماً ألا تتكلف، بل تحدّث ببساطة وبشاشة وعفوية كاملة كأنك تجلس وتتحدث مع صديق قديم يثق بك وينصت إليك بقلب مفتوح. عبّر بمصداقية عن ذكرياتك وجوانب قوتك وأحلامك الملهمة ليلمس صدق حروفك قلوب جميع مستمعيك.'
+                      : 'Activate your camera and microphone to easily record your video message with a maximum length of two minutes. Speak with natural cheerfulness, absolute sincerity, and spontaneity, as if sharing your authentic life journey, dear memories, or hopeful aspirations with an old friend who listens with ultimate warmth and respect.'
+                    }
+                  </p>
                 </div>
-                <div className="p-4 border border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/40 rounded-xl flex flex-col items-center">
-                  <span className="w-8 h-8 rounded-full bg-lime-500/10 dark:bg-indigo-500/10 text-lime-600 dark:text-indigo-400 font-bold flex items-center justify-center text-sm mb-3">٣</span>
-                  <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1">{lang === 'ar' ? 'احصل على 4K' : 'Download in 4K'}</h4>
-                  <p className="text-[11px] text-slate-600 dark:text-slate-500">{lang === 'ar' ? 'حمّل الفيديو المدمج بجودة عالية' : 'Download merged video in 4K resolution'}</p>
+
+                {/* Step 3 */}
+                <div className="p-6 md:p-8 border border-slate-800 bg-slate-900/60 rounded-[2rem] hover:border-[#D4AF37]/30 transition-all flex flex-col items-center text-center group shadow-md relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-[#D4AF37]/5 rounded-full blur-2xl pointer-events-none" />
+                  <span className="w-12 h-12 rounded-full bg-[#D4AF37]/10 text-[#D4AF37] font-bold flex items-center justify-center text-lg mb-4 border border-[#D4AF37]/35 shadow-inner">
+                    {lang === 'ar' ? '٣' : '3'}
+                  </span>
+                  <h4 className="text-base font-bold text-slate-100 mb-3 group-hover:text-[#D4AF37] transition-colors">
+                    {lang === 'ar' ? 'دمج واستلام مقطعك بجودة كافية' : 'Render and Get Your 4K Video'}
+                  </h4>
+                  <p className="text-xs text-slate-300 leading-loose text-justify font-normal">
+                    {lang === 'ar' 
+                      ? 'بعد انتهائك من التسجيل، استخدم محرك المعالجة والدمج الخاص بالمنصة لتركيب الفيديو والصوت بسلاسة لتنتج مقطعاً نهائياً مصمماً بطريقة احترافية وجودة فائقة تصل إلى 4K. يمكنك بعد ذلك تحميل هذا الفيديو مباشرةً لمشاركته مع مجتمع المبادرة وإرساله لغرف الاستماع وصناع الأثر، لتخلد قصتك وتلهم بها كل من يحتاج إلى طاقة أمل جديدة.'
+                      : 'Once you finish recording, utilize our high-performance rendering engine to perfectly merge your audio track and video frames. Export your finished video in an ultra-high-definition format up to 4K resolution, ready to download instantly and share with the entire initiative community, spreading hope and inspiring countless listeners.'
+                    }
+                  </p>
                 </div>
               </div>
             </div>

@@ -7,6 +7,12 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-arabic: "Lalezar", ui-sans-serif, system-ui;
+  --animate-shimmer: shimmer 2.5s infinite linear;
+  @keyframes shimmer {
+    0% { transform: translateX(-150%) skewX(-15deg); }
+    50% { transform: translateX(150%) skewX(-15deg); }
+    100% { transform: translateX(150%) skewX(-15deg); }
+  }
 }
 
 body {
